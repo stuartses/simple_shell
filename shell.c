@@ -4,9 +4,10 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
 int main (void)
 {
-	char *buffer, *parse;
+	char *buffer, *parse ;
 	size_t buffer_size = 50;
 	int com_len = 0, i = 0;
 	size_t getline_out, new_pid, new_exec;
@@ -17,6 +18,7 @@ int main (void)
 
 	printf("$ ");
 	getline_out = getline(&buffer, &buffer_size, stdin);
+
 	while (buffer[i] != '\n')
 		i++;
 	buffer[i] = '\0';
@@ -45,5 +47,6 @@ int main (void)
 
 	free(buffer);
 	free(parse_com);
+
 	return (0);
 }
