@@ -8,4 +8,5 @@
 #include <sys/wait.h>
 #define BUFFERSIZE 1024
 char *prompt(void);
+void own_shell(void);
 #endif /* HEADERS */
