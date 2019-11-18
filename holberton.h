@@ -7,4 +7,5 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #define BUFFERSIZE 1024
+char *prompt(void);
 #endif /* HEADERS */
