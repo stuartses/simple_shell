@@ -1,4 +1,4 @@
-#include <holberton.h>
+#include "holberton.h"
 /**
  * prompt - get from standard input
  *
@@ -12,7 +12,6 @@ char *prompt(void)
 	int buff_len = 0;
 
 	buffer = malloc(sizeof(char) * buffer_size);
-	printf("$ ");
 	getline_out = getline(&buffer, &buffer_size, stdin);
 
 	while (buffer[buff_len] != '\n')

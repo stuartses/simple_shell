@@ -7,6 +7,6 @@
  */
 int main(void)
 {
-	void own_shell(void);
+	own_shell();
 	return (0);
 }
