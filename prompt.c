@@ -5,13 +5,19 @@
  * Description: get string from standard input
  * Return: string
  */
-char *prompt(void)
+void prompt(char *buffer)
 {
-	char *buffer;
-	size_t buffer_size = BUFFERSIZE, getline_out = 0;
+	size_t getline_out = 0;
+	size_t buffer_size = BUFFERSIZE;
 	int buff_len = 0;
 
-	buffer = malloc(sizeof(char) * buffer_size);
+	/*buffer = malloc(sizeof(char) * buffer_size);*/
+
+	if (buffer == NULL)
+	{
+		write(STDERR_FILENO, "Error assign memory\n", 50);
+	}
+
 	getline_out = getline(&buffer, &buffer_size, stdin);
 	/*
 	while (getline_out != '\n' && getline_out != EOF)
@@ -34,5 +40,5 @@ char *prompt(void)
 
        	buffer[buff_len] = '\0';
 
-	return (buffer);
+
 }

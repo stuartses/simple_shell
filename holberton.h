@@ -10,7 +10,7 @@
 
 #define BUFFERSIZE 1024
 
-char *prompt(void);
+void prompt(char *buffer);
 void own_shell(void);
 char **parse_line(char *buffer);
 int execution_line(char **args);
