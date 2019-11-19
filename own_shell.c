@@ -13,7 +13,7 @@ void own_shell(void)
 
 	while (status)
 	{
-		printf("$ ");
+		write(STDERR_FILENO, "$ ", 2);
 		input_buff = prompt();
 		args = parse_line(input_buff);
 		status = execution_line(args);
