@@ -13,5 +13,6 @@
 char *prompt(void);
 void own_shell(void);
 char **parse_line(char *buffer);
+int execution_line(char **args);
 
 #endif /* HEADERS */
