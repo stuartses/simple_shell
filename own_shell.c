@@ -23,7 +23,6 @@ void own_shell(void)
 
 	if (isatty(STDIN_FILENO) == 0)
 	{
-		printf("Hola");
 		prompt(input_buff);
 		execution_line(parse_line(input_buff));
 		exit(0);
