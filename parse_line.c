@@ -15,7 +15,11 @@ char **parse_line(char *buffer)
 	tokens = malloc(sizeof(tokens) * BUFFERSIZE);
 
 	if (tokens == NULL)
+	{
+		write(STDERR_FILENO, "Error assign memory\n", 50);
+		free(tokens);
 		return(NULL);
+	}
 
 	token = strtok(buffer, " ");
 
@@ -25,6 +29,8 @@ char **parse_line(char *buffer)
 		token = strtok(NULL, " ");
 		len++;
 	}
+
+	tokens[len] = NULL;
 
 	return (tokens);
 }

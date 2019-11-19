@@ -12,14 +12,15 @@ int execution_line(char **args)
 
 	new_pid = fork();
 
-	if (args[0] == "exit")
-		return (0);
+	/*if (args[0] == "exit")
+	  return(0);*/
 
 	if (new_pid == 0)
 	{
 		if ((execve(args[0], args, NULL)) == -1)
 		{
-			perror("execve");
+			perror(args[0]);
+			free(args);
 			exit(EXIT_FAILURE);
 		}
 	}
