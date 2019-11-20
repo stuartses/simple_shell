@@ -12,7 +12,8 @@
 
 void prompt(char *buffer);
 void own_shell(void);
-char **parse_line(char *buffer);
+void parse_line(char *buffer, char **tokens);
 int execution_line(char **args);
+void process_path(char *input_command);
 
 #endif /* HEADERS */

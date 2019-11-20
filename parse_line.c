@@ -7,22 +7,19 @@
  *
  * Return: Pointer with the list of arguments or NULL if failed
  */
-char **parse_line(char *buffer)
+void parse_line(char *buffer, char **tokens)
 {
-	char **tokens, *token;
+	char *token;
 	int len = 0;
-
-	tokens = malloc(sizeof(tokens) * BUFFERSIZE);
 
 	if (tokens == NULL)
 	{
 		write(STDERR_FILENO, "Error assign memory\n", 50);
 		free(tokens);
-		return(NULL);
+		/* return(NULL); */
 	}
 
 	token = strtok(buffer, " ");
-
 	while (token != NULL)
 	{
 		tokens[len] = token;
@@ -32,5 +29,4 @@ char **parse_line(char *buffer)
 
 	tokens[len] = NULL;
 
-	return (tokens);
 }

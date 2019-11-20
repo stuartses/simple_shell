@@ -9,7 +9,6 @@ void prompt(char *buffer)
 {
 	ssize_t getline_out = 0;
 	size_t buffer_size = BUFFERSIZE;
-	int buff_len = 0;
 
 	getline_out = getline(&buffer, &buffer_size, stdin);
 
@@ -19,8 +18,5 @@ void prompt(char *buffer)
 		exit(0);
 	}
 
-	while (buffer[buff_len] != '\n')
-		buff_len++;
-
-       	buffer[buff_len] = '\0';
+       	buffer[getline_out - 1] = '\0';
 }

@@ -5,8 +5,10 @@
  * Description: call the function to begins simple shell program
  * Return: void
  */
-int main(void)
+int main(char **env)
 {
+	
 	own_shell();
+
 	return (0);
 }
