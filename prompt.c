@@ -10,11 +10,15 @@ void prompt(char *buffer)
 	ssize_t getline_out = 0;
 	size_t buffer_size = BUFFERSIZE;
 
-	getline_out = getline(&buffer, &buffer_size, stdin);
+	do {
+		write(STDOUT_FILENO, "$ ", 2);
+		getline_out = getline(&buffer, &buffer_size, stdin);
+	} while (getline_out == 1);
 
 	if (getline_out == EOF)
 	{
-		write(STDERR_FILENO, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
+		free(buffer);
 		exit(0);
 	}
 

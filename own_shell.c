@@ -10,9 +10,7 @@ void own_shell(void)
 	char *input_buff;
 	char **args;
 	int status = 1;
-	size_t buffer_size = BUFFERSIZE;
 
-	
 /*
 	if (isatty(STDIN_FILENO) == 0)
 	{
@@ -21,26 +19,20 @@ void own_shell(void)
 		exit(0);
 	}
 */
+
 	while (status)
 	{
-		input_buff = malloc(sizeof(char*) * buffer_size);
-		args = malloc(sizeof(args) * buffer_size);
+		input_buff = malloc(sizeof(input_buff) * BUFFERSIZE);
 
-		if (input_buff == NULL || args == NULL)
+		if (input_buff == NULL)
 		{
 			write(STDERR_FILENO, "Error assign memory\n", 50);
 			free(input_buff);
-			free(args);
-			exit(0);
+			exit(EXIT_FAILURE);
 		}
 
-		write(STDOUT_FILENO, "$ ", 2);
-
 		prompt(input_buff);
-		parse_line(input_buff, args);
-		status = execution_line(args);
-
-		free(input_buff);
-		free(args);
+		args = parse_line(input_buff);
+		status = execution_line(args, input_buff);
 	}
 }

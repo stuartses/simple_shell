@@ -2,11 +2,12 @@
 /*
  * execution_line - Function that execute a command line.
  *
- * @arg: Pointer type char
+ * @args: Pointer type char
+ * @buffer: Pointer type char
  *
  * Return: 1
  */
-int execution_line(char **args)
+int execution_line(char **args, char *buffer)
 {
 	pid_t new_pid;
 
@@ -21,7 +22,8 @@ int execution_line(char **args)
 		{
 			perror(args[0]);
 			free(args);
-			exit(EXIT_FAILURE);
+			free(buffer);
+			exit(0);
 		}
 	}
 	else
@@ -29,5 +31,7 @@ int execution_line(char **args)
 		wait(NULL);
 	}
 
-	return (1);
+	free(args);
+	free(buffer);
+	return(1);
 }
