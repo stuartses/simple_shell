@@ -5,7 +5,7 @@
  * Description: Own Simple Shell
  * Return: void
  */
-void own_shell(void)
+void own_shell(char **env)
 {
 	char *input_buff;
 	char **args;
@@ -33,6 +33,7 @@ void own_shell(void)
 
 		prompt(input_buff);
 		args = parse_line(input_buff);
+		/* process_path(args, env);*/
 		status = execution_line(args, input_buff);
 	}
 }
