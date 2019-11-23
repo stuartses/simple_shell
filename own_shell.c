@@ -3,6 +3,7 @@
  * own_shell - Simple Shell
  *
  * Description: Own Simple Shell
+ *
  * Return: void
  */
 void own_shell(char **env)
@@ -11,14 +12,7 @@ void own_shell(char **env)
 	char **args;
 	int status = 1;
 
-/*
-	if (isatty(STDIN_FILENO) == 0)
-	{
-		prompt(input_buff);
-		execution_line(parse_line(input_buff, args));
-		exit(0);
-	}
-*/
+	(void)env;
 
 	while (status)
 	{
@@ -35,5 +29,7 @@ void own_shell(char **env)
 		args = parse_line(input_buff);
 		/* process_path(args, env);*/
 		status = execution_line(args, input_buff);
+		if (!isatty(STDIN_FILENO))
+			exit(0);
 	}
 }
