@@ -27,7 +27,7 @@ void own_shell(char **env)
 
 		prompt(input_buff);
 		args = parse_line(input_buff);
-		/* process_path(args, env);*/
+		process_path(args, env);
 		status = execution_line(args, input_buff);
 		if (!isatty(STDIN_FILENO))
 			exit(0);
