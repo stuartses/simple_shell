@@ -73,3 +73,20 @@ char *_strcpy(char *dest, char *src)
 
 	return (dest);
 }
+
+/**
+ * _strlen - Function that return the length of a string
+ *
+ * @str: Pointer type char
+ *
+ * Return: The length of a string
+ */
+int _strlen(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+		i++;
+
+	return (i);
+}

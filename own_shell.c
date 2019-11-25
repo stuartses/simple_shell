@@ -24,11 +24,10 @@ void enviroment(char **env)
  */
 void own_shell(char **env)
 {
-	char *input_buff;
+	char *input_buff, *new_path = NULL;
 	char **args;
 	int status = 1, compare;
-
-	(void)env;
+	struct stat stat_var;
 
 	while (status)
 	{
@@ -48,8 +47,17 @@ void own_shell(char **env)
 		if (compare == 0)
 			enviroment(env);
 
-		process_path(args, env);
-		status = execution_line(args, input_buff);
+		if (stat(args[0], &stat_var) == -1)
+		{
+			if (process_path(args, env, new_path) == -1)
+			{
+				free(input_buff);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		status = execution_line(args, input_buff, new_path);
+
 		if (!isatty(STDIN_FILENO))
 			exit(0);
 	}

@@ -7,7 +7,7 @@
  *
  * Return: 1
  */
-int execution_line(char **args, char *buffer)
+int execution_line(char **args, char *buffer, char *new_path)
 {
 	int compare;
 	pid_t new_pid;
@@ -19,6 +19,7 @@ int execution_line(char **args, char *buffer)
 	{
                 free(buffer);
 		free(args);
+		free(new_path);
                 exit(0);
 	}
 
@@ -29,6 +30,7 @@ int execution_line(char **args, char *buffer)
 			perror(args[0]);
 			free(args);
 			free(buffer);
+			free(new_path);
 			exit(0);
 		}
 	}
@@ -39,5 +41,6 @@ int execution_line(char **args, char *buffer)
 
 	free(args);
 	free(buffer);
+	free(new_path);
 	return(1);
 }
