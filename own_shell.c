@@ -1,5 +1,21 @@
 #include "holberton.h"
 /**
+ *
+ *
+ */
+void enviroment(char **env)
+{
+        int env_i = 0;
+
+        while (env[env_i] != NULL)
+        {
+                printf("%s\n", env[env_i]);
+                env_i++;
+        }
+}
+
+
+/**
  * own_shell - Simple Shell
  *
  * Description: Own Simple Shell
@@ -10,7 +26,7 @@ void own_shell(char **env)
 {
 	char *input_buff;
 	char **args;
-	int status = 1;
+	int status = 1, compare;
 
 	(void)env;
 
@@ -27,6 +43,11 @@ void own_shell(char **env)
 
 		prompt(input_buff);
 		args = parse_line(input_buff);
+
+		compare = _strcmp(args[0], "env");
+		if (compare == 0)
+			enviroment(env);
+
 		process_path(args, env);
 		status = execution_line(args, input_buff);
 		if (!isatty(STDIN_FILENO))

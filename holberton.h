@@ -20,5 +20,5 @@ char **parse_line(char *buffer);
 int execution_line(char **args, char *buffer);
 void process_path(char **args, char **env);
 void insert_path(char *in_path, char *arg);
-
+void enviroment(char **env);
 #endif /* HEADERS */

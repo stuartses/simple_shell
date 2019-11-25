@@ -10,10 +10,8 @@
 
 void insert_path(char *in_path, char *arg)
 {
-	char *long_path;
-
-	long_path = _strcat(in_path, "/");
-	long_path = _strcat(in_path, arg);
+	_strcat(in_path, "/");
+	_strcat(in_path, arg);
 }
 
 /**
@@ -59,4 +57,5 @@ void process_path(char **args, char **env)
 	}
 	/* se debe liberar temp_path cuando se ejecuta el comando!! ¿Como? */
 	free(path_line);
+
 }
