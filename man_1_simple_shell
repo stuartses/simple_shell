@@ -1,0 +1,83 @@
+.\" Manpage for SIMPLE SHELL
+.\" Contact diego.garzon@holbertonschool.com,
+.\" stuart.echeverry@holbertonschool.com to correct errors.
+.TH hsh 1 "28 Nov 2019" "version 1.0" "Manpage for Simple Shell"
+.SH NAME
+hsh - Simple UNIX command interpreter
+.SH SYNOPSIS
+hsh - [command]
+.I [arguments]
+.PP
+Include libraries and prototypes
+.br
+#include "holberton.h"
+.SH DESCRIPTION
+hsh is a simple command interpreter for Unix system. The user can communicate with the kernel and execute orders
+
+.B "Overview"
+.RS
+The hsh is a program that reads lines from either a file or the terminal, interprets them, and generally executes commands. Allows use of interactive and non-interactive mode, that means commands can be typed directly to the running simple shell or can be put into a file and the file can be executed directly by the simple shell.
+
+.B "Invocation"
+.RS
+Open in Terminal the executable ./hsh and the simple shell works in interactive mode.
+.PP
+.B Example:
+.br
+start simple shell:
+.I ./hsh
+.br
+.I $ echo Holberton
+.br
+This will print "Holberton" in standard output
+.PP
+In non-interactive mode is posible to use a file to executes Simple Shell
+.br
+.B Example:
+.br
+.I $ cat file | ./hsh
+.br
+This will executes command written in file
+.RE
+.PP
+.B "Environments variables"
+.RS
+It is possible to get the environments variables by enter
+.I env
+.RE
+.PP
+.B "Arguments"
+.RS
+The arguments depends on each command used. And corresponds to its use.
+.PP
+.B Example:
+.br
+.I $ ls -al
+.br
+Have the argument
+.I al
+that list all elements of the directory with the hidden files
+.RE
+.B "Exit"
+.RS
+Type
+.I Exit
+or
+.I
+CTRL + D
+to close Simple Shell
+.RE
+.B "Errors"
+.RS
+If the command or the path are not found the Simple Shell returns Error.
+.RE
+.SH AUTHOR
+.RS
+Diego Garzon
+.I (diego.garzon@holbertonschool.com)
+.br
+Stuart Echeverry Solarte
+.I (stuart.echeverry@holbertonschool.com)
+.br
+.I HOLBERTON SCHOOL
+.RE
