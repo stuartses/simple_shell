@@ -56,7 +56,8 @@ int process_path(char **args, char **env)
 
 	while (found_path != 0 && path_dir != NULL)
 	{
-		tmp_path = malloc((sizeof(char) * _strlen(path_dir)) + 1);
+		tmp_path = malloc(sizeof(char) *
+				   (_strlen(path_dir) + _strlen(args[0])) + 2);
 
 		if (tmp_path == NULL)
 		{
