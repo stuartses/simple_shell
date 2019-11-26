@@ -1,11 +1,11 @@
 #include "holberton.h"
-/*
+/**
  * execution_line - Function that execute a command line.
  *
  * @args: Pointer type char
  * @buffer: Pointer type char
  *
- * Return: 1
+ * Return: int
  */
 int execution_line(char **args, char *buffer)
 {
@@ -30,5 +30,5 @@ int execution_line(char **args, char *buffer)
 
 	free(args);
 	free(buffer);
-	return(1);
+	return (1);
 }

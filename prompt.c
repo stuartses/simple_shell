@@ -3,7 +3,10 @@
  * prompt - get from standard input
  *
  * Description: get string from standard input
- * Return: string
+ *
+ * @buffer: Pointer type char
+ *
+ * Return: void
  */
 void prompt(char *buffer)
 {
@@ -22,5 +25,5 @@ void prompt(char *buffer)
 		exit(0);
 	}
 
-       	buffer[getline_out - 1] = '\0';
+	buffer[getline_out - 1] = '\0';
 }

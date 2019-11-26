@@ -1,5 +1,5 @@
 #include "holberton.h"
-/*
+/**
  * parse_line - Function that split and add the content of buffer
  * into a list of arguments.
  *
@@ -33,5 +33,5 @@ char **parse_line(char *buffer)
 
 	tokens[len] = NULL;
 
-	return(tokens);
+	return (tokens);
 }
