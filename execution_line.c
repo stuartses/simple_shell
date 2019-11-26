@@ -9,18 +9,9 @@
  */
 int execution_line(char **args, char *buffer)
 {
-	int compare;
 	pid_t new_pid;
 
 	new_pid = fork();
-
-	compare = _strcmp(args[0], "exit");
-	if (compare == 0)
-	{
-                free(buffer);
-		free(args);
-                exit(0);
-	}
 
 	if (new_pid == 0)
 	{

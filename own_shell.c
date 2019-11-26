@@ -1,7 +1,10 @@
 #include "holberton.h"
 /**
+ * enviroment - print the enviroment variables
+ * @env: enviroment variables
  *
- *
+ * Description: print the enviroment variables in simple shell
+ * Return: void
  */
 void enviroment(char **env)
 {
@@ -47,18 +50,28 @@ void own_shell(char **env)
 		if (compare == 0)
 			enviroment(env);
 
+		compare = _strcmp(args[0], "exit");
+		if (compare == 0)
+		{
+			free(input_buff);
+			free(args);
+			exit(0);
+		}
+
 		if (stat(args[0], &stat_var) == -1)
 		{
 			if (process_path(args, env) == -1)
 			{
 				free(input_buff);
+				free(args);
 				exit(EXIT_FAILURE);
 			}
 		}
 
 		status = execution_line(args, input_buff);
 
-		if (!isatty(STDIN_FILENO))
-			exit(0);
+		/*if (isatty(!STDIN_FILENO))
+		  exit(0);*/
+
 	}
 }
