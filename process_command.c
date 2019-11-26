@@ -9,7 +9,6 @@
  *
  * Return: void
  */
-
 void insert_path(char *in_path, char *arg)
 {
 	_strcat(in_path, "/");
@@ -38,7 +37,7 @@ int process_path(char **args, char **env)
 	{
 		write(STDERR_FILENO, "Error assign memory\n", 50);
 		free(path_line);
-		return(-1);
+		return (-1);
 	}
 
 	while (env[proc_i] != NULL)
@@ -64,7 +63,7 @@ int process_path(char **args, char **env)
 			write(STDERR_FILENO, "Error assign memory\n", 50);
 			free(path_line);
 			free(tmp_path);
-			return(-1);
+			return (-1);
 		}
 
 		tmp_path = _strcpy(tmp_path, path_dir);
@@ -76,7 +75,7 @@ int process_path(char **args, char **env)
 			args[0] = strdup(tmp_path);
 			free(path_line);
 			free(tmp_path);
-			return(1);
+			return (1);
 		}
 
 		free(tmp_path);
@@ -84,5 +83,5 @@ int process_path(char **args, char **env)
 		path_dir = strtok(NULL, ":");
 	}
 	free(path_line);
-	return(0);
+	return (0);
 }

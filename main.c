@@ -3,7 +3,12 @@
  * main - call to Simple Shell
  *
  * Description: call the function to begins simple shell program
- * Return: void
+ *
+ * @ac: Variable type int
+ * @av: Pointer to pointer type char
+ * @env: Pointer to pointer type char
+ *
+ * Return: int
  */
 int main(int ac, char **av, char **env)
 {

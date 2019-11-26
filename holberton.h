@@ -23,4 +23,6 @@ int execution_line(char **args, char *buffer);
 int process_path(char **args, char **env);
 void insert_path(char *in_path, char *arg);
 void enviroment(char **env);
+int built_commands(char **args, char *buffer, char **env);
+
 #endif /* HEADERS */
