@@ -15,6 +15,7 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 int _strncmp(char *s1, char *s2, int n);
 char *_strcpy(char *dest, char *src);
+char *_strdup(const char *src);
 int _strlen(char *str);
 
 void prompt(char *buffer);
