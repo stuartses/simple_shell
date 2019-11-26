@@ -19,8 +19,8 @@ int _strlen(char *str);
 void prompt(char *buffer);
 void own_shell(char **env);
 char **parse_line(char *buffer);
-int execution_line(char **args, char *buffer, char *new_path);
-int process_path(char **args, char **env, char *new_path);
+int execution_line(char **args, char *buffer);
+int process_path(char **args, char **env);
 void insert_path(char *in_path, char *arg);
 void enviroment(char **env);
 #endif /* HEADERS */

@@ -27,10 +27,10 @@ void insert_path(char *in_path, char *arg)
  *
  * Return: int with the status of the process
  */
-int process_path(char **args, char **env, char *new_path)
+int process_path(char **args, char **env)
 {
 	int proc_i = 0, found_path;
-	char *path_line, *path_dir;
+	char *path_line, *path_dir, *tmp_path;
 
 	path_line = malloc((sizeof(char) * BUFFERSIZE));
 
@@ -56,28 +56,29 @@ int process_path(char **args, char **env, char *new_path)
 
 	while (found_path != 0 && path_dir != NULL)
 	{
-		new_path = malloc((sizeof(char) * _strlen(path_dir)) + 1);
+		tmp_path = malloc((sizeof(char) * _strlen(path_dir)) + 1);
 
-		if (new_path == NULL)
+		if (tmp_path == NULL)
 		{
 			write(STDERR_FILENO, "Error assign memory\n", 50);
 			free(path_line);
-			free(new_path);
+			free(tmp_path);
 			return(-1);
 		}
 
-		new_path = _strcpy(new_path, path_dir);
-		insert_path(new_path, args[0]);
-		found_path = access(new_path, F_OK);
+		tmp_path = _strcpy(tmp_path, path_dir);
+		insert_path(tmp_path, args[0]);
+		found_path = access(tmp_path, F_OK);
 
 		if (found_path == 0)
 		{
-			args[0] = new_path;
+			args[0] = strdup(tmp_path);
 			free(path_line);
+			free(tmp_path);
 			return(1);
 		}
 
-		free(new_path);
+		free(tmp_path);
 
 		path_dir = strtok(NULL, ":");
 	}

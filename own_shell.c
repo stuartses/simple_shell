@@ -24,7 +24,7 @@ void enviroment(char **env)
  */
 void own_shell(char **env)
 {
-	char *input_buff, *new_path = NULL;
+	char *input_buff;
 	char **args;
 	int status = 1, compare;
 	struct stat stat_var;
@@ -49,14 +49,14 @@ void own_shell(char **env)
 
 		if (stat(args[0], &stat_var) == -1)
 		{
-			if (process_path(args, env, new_path) == -1)
+			if (process_path(args, env) == -1)
 			{
 				free(input_buff);
 				exit(EXIT_FAILURE);
 			}
 		}
 
-		status = execution_line(args, input_buff, new_path);
+		status = execution_line(args, input_buff);
 
 		if (!isatty(STDIN_FILENO))
 			exit(0);
