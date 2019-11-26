@@ -51,6 +51,33 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
+ * _strncmp -  compares two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: first n bytes of s1
+ *
+ * Description: function that compares the first n bytes of s1 with s2
+ * Return: integer
+ */
+
+int _strncmp(char *s1, char *s2, int n)
+{
+	int compare = 0, i = 0;
+
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		compare = s1[i] - s2[i];
+		if (s1[i] != s2[i])
+			break;
+
+		i++;
+	}
+
+	return (compare);
+}
+
+
+/**
  * _strcpy -  copies the string pointed to by src
  * @dest: destination char
  * @src: origin char
