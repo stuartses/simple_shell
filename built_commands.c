@@ -24,6 +24,7 @@ void enviroment(char **env)
  * init_commands - call process_path
  * @args: input arguments
  * @input_buff: buffer
+ * @env: inviroments variables
  *
  * Description: take arguments and call process_path to complement
  * Return: void
