@@ -1,3 +1,4 @@
+#include "holberton.h"
 /**
  * _strcpy -  copies the string pointed to by src
  * @dest: destination char
@@ -29,8 +30,7 @@ char *_strcpy(char *dest, char *src)
  * Description:  function that copies the string pointed to by src
  * Return: dest ponter
  */
-
-char *_strdup(const char *src)
+char *_strdup(char *src)
 {
 	int i = 0, len;
 	char *dest;
@@ -51,7 +51,6 @@ char *_strdup(const char *src)
 
 	return (dest);
 }
-
 
 /**
  * _strlen - Function that return the length of a string

@@ -16,11 +16,34 @@ void insert_path(char *in_path, char *arg)
 }
 
 /**
+ * get_value_enviroment - Function that get the value of env
+ *
+ * @env: Pointer to pointer type char
+ * @path_line: Pointer type char
+ * @name_var: Pointer type char
+ *
+ * Return: void
+ */
+void get_value_enviroment(char **env, char *path_line, char *name_var)
+{
+	int i = 0;
+
+	while (env[i] != NULL)
+	{
+		if (_strncmp(name_var, env[i], 4) == 0)
+		{
+			path_line = _strcpy(path_line, env[i]);
+			break;
+		}
+		i++;
+	}
+}
+
+/**
  * process_path - Look for program in enviroment PATH directories
  *
  * @args: input argument from stdin
  * @env: enviroment variables
- * @new_path: new_path for execution
  *
  * Description: Look for the program in system and complete with full Path
  *
@@ -28,8 +51,8 @@ void insert_path(char *in_path, char *arg)
  */
 int process_path(char **args, char **env)
 {
-	int proc_i = 0, found_path;
 	char *path_line, *path_dir, *tmp_path;
+	struct stat stat_var;
 
 	path_line = malloc((sizeof(char) * BUFFERSIZE));
 
@@ -40,23 +63,15 @@ int process_path(char **args, char **env)
 		return (-1);
 	}
 
-	while (env[proc_i] != NULL)
-	{
-		if (strncmp("PATH", env[proc_i], 4) == 0)
-		{
-			path_line = _strcpy(path_line, env[proc_i]);
-		}
-		proc_i++;
-	}
+	get_value_enviroment(env, path_line, "PATH");
 
-	found_path = access(args[0], F_OK);
 	path_dir = strtok(path_line, "=");
 	path_dir = strtok(NULL, ":");
 
-	while (found_path != 0 && path_dir != NULL)
+	while (path_dir != NULL)
 	{
 		tmp_path = malloc(sizeof(char) *
-				   (_strlen(path_dir) + _strlen(args[0])) + 2);
+				  (_strlen(path_dir) + _strlen(args[0])) + 2);
 
 		if (tmp_path == NULL)
 		{
@@ -68,11 +83,10 @@ int process_path(char **args, char **env)
 
 		tmp_path = _strcpy(tmp_path, path_dir);
 		insert_path(tmp_path, args[0]);
-		found_path = access(tmp_path, F_OK);
 
-		if (found_path == 0)
+		if (stat(tmp_path, &stat_var) == 0)
 		{
-			args[0] = strdup(tmp_path);
+			args[0] = _strdup(tmp_path);
 			free(path_line);
 			free(tmp_path);
 			return (1);
