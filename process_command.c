@@ -40,6 +40,51 @@ void get_value_enviroment(char **env, char *path_line, char *name_var)
 }
 
 /**
+ * check_path - Cheks if program exists in path
+ * @args: arguments
+ * @path_dir: string with all paths
+ *
+ * Description: parse paths and check if program exist
+ * Return: 1 sucess, 0 fails, -1 error
+ */
+int check_path(char **args, char *path_dir)
+{
+	char *tmp_path;
+	struct stat stat_var;
+
+	path_dir = strtok(NULL, ":");
+
+	while (path_dir != NULL)
+	{
+		tmp_path = malloc(sizeof(char) *
+				  (_strlen(path_dir) + _strlen(args[0])) + 2);
+
+		if (tmp_path == NULL)
+		{
+			write(STDERR_FILENO, "Error assign memory\n", 50);
+			free(tmp_path);
+			return (-1);
+		}
+
+		tmp_path = _strcpy(tmp_path, path_dir);
+		insert_path(tmp_path, args[0]);
+
+		if (stat(tmp_path, &stat_var) == 0)
+		{
+			args[0] = _strdup(tmp_path);
+			free(tmp_path);
+			return (1);
+		}
+
+		free(tmp_path);
+
+		path_dir = strtok(NULL, ":");
+	}
+
+	return (0);
+}
+
+/**
  * process_path - Look for program in enviroment PATH directories
  *
  * @args: input argument from stdin
@@ -51,8 +96,8 @@ void get_value_enviroment(char **env, char *path_line, char *name_var)
  */
 int process_path(char **args, char **env)
 {
-	char *path_line, *path_dir, *tmp_path;
-	struct stat stat_var;
+	int path_chk;
+	char *path_line, *path_dir;
 
 	path_line = malloc((sizeof(char) * BUFFERSIZE));
 
@@ -66,36 +111,12 @@ int process_path(char **args, char **env)
 	get_value_enviroment(env, path_line, "PATH");
 
 	path_dir = strtok(path_line, "=");
-	path_dir = strtok(NULL, ":");
+	path_chk = check_path(args, path_dir);
 
-	while (path_dir != NULL)
-	{
-		tmp_path = malloc(sizeof(char) *
-				  (_strlen(path_dir) + _strlen(args[0])) + 2);
-
-		if (tmp_path == NULL)
-		{
-			write(STDERR_FILENO, "Error assign memory\n", 50);
-			free(path_line);
-			free(tmp_path);
-			return (-1);
-		}
-
-		tmp_path = _strcpy(tmp_path, path_dir);
-		insert_path(tmp_path, args[0]);
-
-		if (stat(tmp_path, &stat_var) == 0)
-		{
-			args[0] = _strdup(tmp_path);
-			free(path_line);
-			free(tmp_path);
-			return (1);
-		}
-
-		free(tmp_path);
-
-		path_dir = strtok(NULL, ":");
-	}
 	free(path_line);
+
+	if (path_chk != 0)
+		return (path_chk);
+
 	return (0);
 }

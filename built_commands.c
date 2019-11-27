@@ -21,6 +21,39 @@ void enviroment(char **env)
 }
 
 /**
+ * init_commands - call process_path
+ * @args: input arguments
+ * @input_buff: buffer
+ *
+ * Description: take arguments and call process_path to complement
+ * Return: void
+ */
+void init_commands(char **args, char *input_buff, char **env)
+{
+	int status_process = 0;
+	struct stat stat_var;
+
+	if (stat(args[0], &stat_var) == -1)
+	{
+		status_process = process_path(args, env);
+		if (status_process == -1)
+		{
+			free(input_buff);
+			free(args);
+			exit(EXIT_FAILURE);
+		}
+		/*
+		 * else if (status_process == 0)
+		 * {
+		 *      write(STDOUT_FILENO,
+		 *            "command not fount\n",25);
+		 * }
+		 */
+	}
+}
+
+
+/**
  * built_commands - Function that compare and execute built-in commands
  *
  * @args: Pointer to pointer type char

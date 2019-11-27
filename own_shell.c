@@ -11,8 +11,7 @@
 void own_shell(char **env)
 {
 	char *input_buff, **args;
-	int status = 1, status_process = 0;
-	struct stat stat_var;
+	int status = 1;
 
 	while (status)
 	{
@@ -30,22 +29,7 @@ void own_shell(char **env)
 
 		if ((built_commands(args, input_buff, env)) == 0)
 		{
-			if (stat(args[0], &stat_var) == -1)
-			{
-				status_process = process_path(args, env);
-				if (status_process == -1)
-				{
-					free(input_buff);
-					free(args);
-					exit(EXIT_FAILURE);
-				}
-				/*else if (status_process == 0)
-				{
-					write(STDOUT_FILENO,
-					      "command not fount\n",
-					      25);
-					      }*/
-			}
+			init_commands(args, input_buff, env);
 			status = execution_line(args, input_buff);
 		}
 
