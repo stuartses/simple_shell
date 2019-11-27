@@ -67,6 +67,7 @@ void own_shell(char **env)
 		}
 
 		prompt(input_buff);
+
 		args = parse_line(input_buff);
 
 		if ((built_commands(args, input_buff, env)) == 0)
@@ -83,8 +84,5 @@ void own_shell(char **env)
 				      _strlen(str_error));
 				      }
 		}
-
-		if (!isatty(STDIN_FILENO))
-			exit(0);
 	}
 }
