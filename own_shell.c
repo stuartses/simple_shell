@@ -38,7 +38,7 @@ int init_commands(char **args, char *input_buff, char **env)
  */
 void own_shell(char **env)
 {
-	char *input_buff, **args;
+	char *input_buff, **args, *str_error;
 	int status = 1, status_process = 0;
 
 	while (status)
@@ -60,8 +60,16 @@ void own_shell(char **env)
 		if ((built_commands(args, input_buff, env)) == 0)
 		{
 			status_process = init_commands(args, input_buff, env);
-			status = execution_line(args, input_buff,
-						status_process);
+			if (status_process == 1)
+				status = execution_line(args, input_buff,
+							status_process);
+			if (status_process == 0)
+			{
+				str_error = args[0];
+				_strcat(str_error, ": command not found\n");
+				write(STDERR_FILENO, str_error,
+				      _strlen(str_error));
+			}
 		}
 
 		if (!isatty(STDIN_FILENO))

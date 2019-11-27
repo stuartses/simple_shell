@@ -1,7 +1,6 @@
 #include "holberton.h"
 /**
  * enviroment - print the enviroment variables
- *
  * @env: enviroment variables
  *
  * Description: print the enviroment variables in simple shell

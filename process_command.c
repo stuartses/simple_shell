@@ -53,7 +53,6 @@ int check_path(char **args, char *path_dir)
 	struct stat stat_var;
 
 	path_dir = strtok(NULL, ":");
-
 	while (path_dir != NULL)
 	{
 		tmp_path = malloc(sizeof(char) *
@@ -75,9 +74,7 @@ int check_path(char **args, char *path_dir)
 			free(tmp_path);
 			return (1);
 		}
-
 		free(tmp_path);
-
 		path_dir = strtok(NULL, ":");
 	}
 

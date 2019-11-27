@@ -22,7 +22,7 @@ char **parse_line(char *buffer)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(buffer, " ");
+	token = strtok(buffer, STR_DELIM);
 
 	while (token != NULL)
 	{

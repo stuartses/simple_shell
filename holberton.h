@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 
 #define BUFFERSIZE 1024
+#define STR_DELIM " \t\r\n\a"
 
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
