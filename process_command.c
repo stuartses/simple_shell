@@ -96,7 +96,7 @@ int check_path(char **args, char *path_dir)
  */
 int process_path(char **args, char **env)
 {
-	int path_chk;
+	int path_chk = 0;
 	char *path_line, *path_dir;
 
 	path_line = malloc((sizeof(char) * BUFFERSIZE));
@@ -115,8 +115,5 @@ int process_path(char **args, char **env)
 
 	free(path_line);
 
-	if (path_chk != 0)
-		return (path_chk);
-
-	return (0);
+	return (path_chk);
 }
