@@ -13,7 +13,6 @@ int execution_line(char **args, char *buffer, int status_process)
 	pid_t new_pid;
 
 	new_pid = fork();
-
 	if (new_pid == 0)
 	{
 		if ((execve(args[0], args, NULL)) == -1)

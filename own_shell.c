@@ -11,19 +11,31 @@
 int init_commands(char **args, char *input_buff, char **env)
 {
 	struct stat stat_var;
-	int status_process = 0;
+	int status_process = 0, is_there;
+	char *full_path, *the_path;
 
-	if (stat(args[0], &stat_var) == -1)
+	the_path = malloc((sizeof(char) * _strlen(args[0])) + 1);
+	_strcpy(the_path, args[0]);
+	full_path = strtok(the_path, "/");
+	full_path = strtok(NULL, "/");
+
+	is_there = stat(args[0], &stat_var);
+
+	if ((full_path != NULL) && is_there == 0)
+	    status_process = 2;
+
+	if (full_path == NULL)
 	{
 		status_process = process_path(args, env);
-
 		if (status_process == -1)
 		{
+			free(the_path);
 			free(input_buff);
 			free(args);
 			exit(EXIT_FAILURE);
 		}
 	}
+	free(the_path);
 	return (status_process);
 }
 
@@ -60,7 +72,7 @@ void own_shell(char **env)
 		if ((built_commands(args, input_buff, env)) == 0)
 		{
 			status_process = init_commands(args, input_buff, env);
-			if (status_process == 1)
+			if (status_process == 1 || status_process == 2)
 				status = execution_line(args, input_buff,
 							status_process);
 			if (status_process == 0)
@@ -69,7 +81,7 @@ void own_shell(char **env)
 				_strcat(str_error, ": command not found\n");
 				write(STDERR_FILENO, str_error,
 				      _strlen(str_error));
-			}
+				      }
 		}
 
 		if (!isatty(STDIN_FILENO))

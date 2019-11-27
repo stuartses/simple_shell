@@ -106,7 +106,7 @@ int process_path(char **args, char **env)
 	}
 
 	get_value_enviroment(env, path_line, "PATH");
-
+	_strcat(path_line, ":");
 	path_dir = strtok(path_line, "=");
 	path_chk = check_path(args, path_dir);
 
