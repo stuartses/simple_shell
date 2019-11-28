@@ -34,7 +34,7 @@ char **parse_line(char *buffer)
 	while (token != NULL)
 	{
 		tokens[len] = token;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, STR_DELIM);
 		len++;
 	}
 	tokens[len] = NULL;
