@@ -8,81 +8,49 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You need to have and install:
 
 ```
-Give examples
+Ubuntu 14.04 LTS
+gcc 4.8.4
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+After you have cloned this repository, you must compile the project with:
 
-Say what the step will be
-
-```
-Give the example
+```sh
+$ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 ```
 
-And repeat
+## Running
 
-```
-until finished
-```
+To run the program in interactive mode:
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```sh
+$ ./hsh
+$ /bin/ls
+$ hsh main.c shell.c
 ```
 
-### And coding style tests
+To run the program in non-interactive mode:
 
-Explain what these tests test and why
-
+```sh
+$ echo "/bin/ls" | ./hsh
+$ hsh main.c shell.c test_ls_2
 ```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [C - programming language](https://en.wikipedia.org/wiki/C_(programming_language)) - The programing language used.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Diego Garzon** - *Holberton Student* - [GitHub](https://github.com/diesgaro)
+* **Stuart Echeverry** - *Holberton Student* - [GitHub](https://github.com/stuartses)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/stuartses/simple_shell/blob/master/AUTHORS) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+This project is licensed under the MIT License.
