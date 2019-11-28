@@ -20,9 +20,8 @@ int init_commands(char **args, char *input_buff, char **env)
 	full_path = strtok(NULL, "/");
 
 	is_there = stat(args[0], &stat_var);
-
 	if ((full_path != NULL) && is_there == 0)
-	    status_process = 2;
+		status_process = 2;
 
 	if (full_path == NULL)
 	{
