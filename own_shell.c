@@ -54,33 +54,38 @@ void own_shell(char **env)
 
 	do {
 		status_process = 0;
-
 		input_buff = malloc(sizeof(input_buff) * BUFFERSIZE);
-
 		if (input_buff == NULL)
 		{
 			write(STDERR_FILENO, "Error assign memory\n", 50);
 			free(input_buff);
 			exit(EXIT_FAILURE);
 		}
-
 		prompt(input_buff);
 		args = parse_line(input_buff);
-		if ((built_commands(args, input_buff, env)) == 0)
+		if (args != NULL)
 		{
-			status_process = init_commands(args, input_buff, env);
-			if (status_process == 1 || status_process == 2)
-				status = execution_line(args, input_buff,
-							status_process);
-			if (status_process == 0)
+			if ((built_commands(args, input_buff, env)) == 0)
 			{
-				str_error = args[0];
-				_strcat(str_error, ": command not found\n");
-				write(STDERR_FILENO, str_error,
-				      _strlen(str_error));
-				free(args);
-				free(input_buff);
+				status_process = init_commands(args, input_buff
+							       , env);
+				if (status_process == 1 || status_process == 2)
+					status = execution_line(args,
+								input_buff,
+								status_process);
+				if (status_process == 0)
+				{
+					str_error = args[0];
+					_strcat(str_error,
+						": command not found\n");
+					write(STDERR_FILENO, str_error,
+					      _strlen(str_error));
+					free(args);
+					free(input_buff);
+				}
 			}
 		}
+		else
+			status = 1;
 	} while (status);
 }

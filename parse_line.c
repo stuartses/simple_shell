@@ -24,6 +24,13 @@ char **parse_line(char *buffer)
 
 	token = strtok(buffer, STR_DELIM);
 
+	if (token == NULL)
+	{
+		free(buffer);
+		free(tokens);
+		return (NULL);
+	}
+
 	while (token != NULL)
 	{
 		tokens[len] = token;
