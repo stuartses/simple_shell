@@ -30,7 +30,6 @@ char **parse_line(char *buffer)
 		token = strtok(NULL, " ");
 		len++;
 	}
-
 	tokens[len] = NULL;
 
 	return (tokens);

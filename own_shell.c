@@ -67,9 +67,7 @@ void own_shell(char **env)
 		}
 
 		prompt(input_buff);
-
 		args = parse_line(input_buff);
-
 		if ((built_commands(args, input_buff, env)) == 0)
 		{
 			status_process = init_commands(args, input_buff, env);
@@ -82,7 +80,9 @@ void own_shell(char **env)
 				_strcat(str_error, ": command not found\n");
 				write(STDERR_FILENO, str_error,
 				      _strlen(str_error));
-				      }
+				free(args);
+				free(input_buff);
+			}
 		}
 	}
 }

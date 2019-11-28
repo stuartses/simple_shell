@@ -28,7 +28,7 @@ int execution_line(char **args, char *buffer, int status_process)
 		wait(NULL);
 	}
 
-	if (status_process == 1)
+	if (status_process == 1 || status_process == 0)
 	{
 		free(args[0]);
 	}
