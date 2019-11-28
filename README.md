@@ -40,6 +40,9 @@ $ echo "/bin/ls" | ./hsh
 $ hsh main.c shell.c test_ls_2
 ```
 
+## Flowchart
+![Simple shell Flowchart](https://github.com/stuartses/simple_shell/blob/master/Simple%20Shell%20Flowchart.png)
+
 ## Built With
 
 * [C - programming language](https://en.wikipedia.org/wiki/C_(programming_language)) - The programing language used.
