@@ -11,6 +11,7 @@
 int execution_line(char **args, char *buffer, int status_process)
 {
 	pid_t new_pid;
+	int status;
 
 	new_pid = fork();
 	if (new_pid == 0)
@@ -35,5 +36,6 @@ int execution_line(char **args, char *buffer, int status_process)
 
 	free(args);
 	free(buffer);
-	return (1);
+	status = (isatty(STDIN_FILENO)) ? 1 : 0;
+	return (status);
 }

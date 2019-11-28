@@ -50,10 +50,9 @@ int init_commands(char **args, char *input_buff, char **env)
 void own_shell(char **env)
 {
 	char *input_buff, **args, *str_error;
-	int status = 1, status_process = 0;
+	int status = 0, status_process = 0;
 
-	while (status)
-	{
+	do {
 		status_process = 0;
 
 		input_buff = malloc(sizeof(input_buff) * BUFFERSIZE);
@@ -83,5 +82,5 @@ void own_shell(char **env)
 				free(input_buff);
 			}
 		}
-	}
+	} while (status);
 }
