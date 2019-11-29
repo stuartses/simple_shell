@@ -11,6 +11,7 @@
 int execution_line(char **args, char *buffer, int status_process)
 {
 	pid_t new_pid;
+	int std_child;
 
 	new_pid = fork();
 	if (new_pid == 0)
@@ -25,7 +26,9 @@ int execution_line(char **args, char *buffer, int status_process)
 	}
 	else
 	{
-		wait(NULL);
+		wait(&std_child);
+		if (WIFEXITED(std_child))
+			exit(WEXITSTATUS(std_child));
 	}
 
 	if (status_process == 1 || status_process == 0)
