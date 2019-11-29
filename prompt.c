@@ -12,13 +12,25 @@ void prompt(char *buffer)
 {
 	ssize_t getline_out = 1;
 	size_t buffer_size = BUFFERSIZE;
-	int stat_issatty = isatty(STDIN_FILENO);
+	int i = 0, stat_buffer = 0, stat_issatty = isatty(STDIN_FILENO);
 
-	while (getline_out == 1)
+	while (getline_out == 1 && stat_buffer != 1)
 	{
 		if (stat_issatty)
 			write(STDOUT_FILENO, "$ ", 2);
 		getline_out = getline(&buffer, &buffer_size, stdin);
+
+		while (buffer[i] != '\n')
+		{
+			if (buffer[i] != ' ')
+			{
+				stat_buffer = 1;
+				break;
+			}
+			else
+				stat_buffer = 0;
+			i++;
+		}
 	}
 
 	if (getline_out == EOF)
