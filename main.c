@@ -15,6 +15,7 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 
+	signal(SIGINT, handle_sigint);
 	own_shell(env);
 
 	return (0);

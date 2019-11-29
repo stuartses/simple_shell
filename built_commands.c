@@ -47,3 +47,15 @@ int built_commands(char **args, char *buffer, char **env)
 
 	return (0);
 }
+/**
+ * handle_sigint - take signal from stdin
+ * @sig: signal value
+ *
+ * Description: take a signal from stdin and prints it
+ * Return: void
+ */
+void handle_sigint(int sig)
+{
+	write(STDOUT_FILENO, &sig, 2);
+	write(STDOUT_FILENO, "\n$ ", 3);
+}
