@@ -56,6 +56,6 @@ int built_commands(char **args, char *buffer, char **env)
  */
 void handle_sigint(int sig)
 {
-	write(STDOUT_FILENO, &sig, 2);
+	(void)sig;
 	write(STDOUT_FILENO, "\n$ ", 3);
 }
